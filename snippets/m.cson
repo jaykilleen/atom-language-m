@@ -1,0 +1,94 @@
+'.source.m':
+  # Basic Query Structure
+  'let … in':
+    'prefix': 'let'
+    'body': 'let\n  Source = ${1:SourceName}\nin\n  Source'
+  # if expressions
+  '# =':
+    'prefix': 'x'
+    'body': '#"${1:StepVariableName}" = $2'
+  'x =':
+    'prefix': 'x'
+    'body': '${1:StepVariableName} = $2'
+  # Logic flow
+  'if … else … end':
+    'prefix': 'ife'
+    'body': 'if ${1:Condition} then\n\t$2\nelse\n\t$3'
+  'if … else if … else':
+    'prefix': 'ifeif'
+    'body': 'if ${1:Condition1} then\n\t$2\nelse if ${3:Condition2} then\n\t$4\nelse\n\t$5'
+  'if … then':
+    'prefix': 'if'
+    'body': 'if ${1:Condition} then $0'
+  # Structured Date Tables
+  # Lists
+  'list':
+    'prefix': 'ls'
+    'body': '{$1,$2,$3}'
+  'listoflists':
+    'prefix': 'lsls'
+    'body': """
+      {
+        {$1, $2, $3},
+        {$4, $5, $6}
+      }
+    """
+  'listofrecords':
+    'prefix': 'lsrc'
+    'body': """
+      {
+        [${1:Field1} = ${2:Value1}],
+        [${3:Field2} = ${4:Value2}]
+      }
+    """
+  # Records
+  'record':
+    'prefix': 'rc'
+    'body': """
+      [
+        ${1:Field1} = ${2:Value1},
+        ${3:Field2} = ${4:Value2}
+      ]
+    """
+  # Empty Tables
+  # A table with implicit column types
+  '#table':
+    'prefix': '#t'
+    'body': """
+      #table(
+        {"${1:text}","${2:text}"},
+          {
+            {${3:text},"${4:text}"},
+            {${5:text},"${6:text}"}
+          }
+        }
+      )
+    """
+  # A table with explicit column types
+  '#tabletype':
+    'prefix': '#tt'
+    'body': """
+      #table(
+        type table [OrderID = number, CustomerID = number, Item = text, Price = number],
+          {
+            {1, 1, "Fishing rod", 100.00},
+            {2, 1, "1 lb. worms", 5.00}
+          }
+        }
+      )
+    """
+  # Error Handling #TODO
+  'try':
+    'prefix': 'try'
+    'body': 'Hello World!'
+  # Hidden Shortcuts
+  'today':
+    'prefix': 'today'
+    'body': ' DateTime.ToText(DateTime.LocalNow(), "${1:yyyy-MM-dd}")'
+  # Custom Function Creation
+
+  # Function References
+  # Table functions
+  'Table.AddColumn':
+    'prefix': 'tAddColumn'
+    'body': 'Table.AddColumn(\n\t${1:SelectTable},\n\t"${2:NewColumnName}",\n\teach\n\t\t${3:NewColumnValue}\n)'

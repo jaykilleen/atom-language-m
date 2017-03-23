@@ -1,0 +1,30 @@
+{
+  "name": "language-m",
+  "main": "./lib/language-m",
+  "version": "0.0.0",
+  "description": "Power Query Formula Language (informally known as 'm') support in atom",
+  "engines": {
+    "atom": "*"
+  },
+  "keywords": [
+    "m",
+    "power-query-formula-language",
+    "language",
+    "grammar",
+    "syntax"
+  ],
+  "activationCommands": {
+    "atom-workspace": "language-m:toggle"
+  },
+  "dependencies": {
+  },
+  "homepage": "https://github.com/jaykilleen/atom-language-m",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaykilleen/atom-language-m.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jaykilleen/atom-language-m/issues"
+  },
+  "license": "MIT"
+}
