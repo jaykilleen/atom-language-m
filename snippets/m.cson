@@ -1,30 +1,35 @@
 '.source.m':
-  # Basic Query Structure
+  # Expressions, values, and let expression
+  # Let expression
   'let … in':
     'prefix': 'let'
     'body': 'let\n  Source = ${1:SourceName}\nin\n  Source'
-  # if expressions
+
+  # Variable Declaration
   '# =':
     'prefix': 'x'
     'body': '#"${1:StepVariableName}" = $2'
   'x =':
     'prefix': 'x'
     'body': '${1:StepVariableName} = $2'
-  # Logic flow
-  'if … else … end':
-    'prefix': 'ife'
-    'body': 'if ${1:Condition} then\n\t$2\nelse\n\t$3'
-  'if … else if … else':
-    'prefix': 'ifeif'
-    'body': 'if ${1:Condition1} then\n\t$2\nelse if ${3:Condition2} then\n\t$4\nelse\n\t$5'
-  'if … then':
+
+  # If expression
+  'if then … ':
     'prefix': 'if'
     'body': 'if ${1:Condition} then $0'
+  'if then … else':
+    'prefix': 'ife'
+    'body': 'if ${1:Condition} then\n\t$2\nelse\n\t$3'
+  'if then … else if then … else':
+    'prefix': 'ifei'
+    'body': 'if ${1:Condition1} then\n\t$2\nelse if ${3:Condition2} then\n\t$4\nelse\n\t$5'
+
   # Structured Date Tables
   # Lists
   'list':
     'prefix': 'ls'
     'body': '{$1,$2,$3}'
+
   'listoflists':
     'prefix': 'lsls'
     'body': """
@@ -33,6 +38,7 @@
         {$4, $5, $6}
       }
     """
+
   'listofrecords':
     'prefix': 'lsrc'
     'body': """
@@ -41,6 +47,7 @@
         [${3:Field2} = ${4:Value2}]
       }
     """
+
   # Records
   'record':
     'prefix': 'rc'
@@ -50,6 +57,7 @@
         ${3:Field2} = ${4:Value2}
       ]
     """
+
   # Empty Tables
   # A table with implicit column types
   '#table':
@@ -64,6 +72,7 @@
         }
       )
     """
+
   # A table with explicit column types
   '#tabletype':
     'prefix': '#tt'
@@ -77,18 +86,64 @@
         }
       )
     """
+
   # Error Handling #TODO
   'try':
     'prefix': 'try'
     'body': 'Hello World!'
+
   # Hidden Shortcuts
   'today':
     'prefix': 'today'
     'body': ' DateTime.ToText(DateTime.LocalNow(), "${1:yyyy-MM-dd}")'
+
   # Custom Function Creation
 
   # Function References
-  # Table functions
+  # Table functions -> https://msdn.microsoft.com/en-us/library/mt296614.aspx
+
+  # Table construction
+
+  # Conversions
+
+  # Information
+
+  # Row operations
+
+  # Column operations
+
+  'Table.Column':
+    'prefix': 'tColumn'
+    'description': 'Returns the values from a column in a table.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260736.aspx'
+    'body': 'Table.Column(\n\t${1:Table}, ${2:Column}\n)'
+
+  'Table.ColumnNames':
+    'prefix': 'tColumnNames'
+    'description': 'Returns the names of columns from a table.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260746.aspx'
+    'body': 'Table.ColumnNames(\n\t${1:Table}\n)'
+
+  # Transformation
   'Table.AddColumn':
     'prefix': 'tAddColumn'
-    'body': 'Table.AddColumn(\n\t${1:SelectTable},\n\t"${2:NewColumnName}",\n\teach\n\t\t${3:NewColumnValue}\n)'
+    'body': 'Table.AddColumn(\n\t${1:SelectTable},\n\t"${2:newColumnName}",\n\teach\n\t\t${3:NewColumnValue}\n)'
+    'description': 'Adds a column named newColumnName to a table.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260727.aspx'
+
+  'Table.AddIndexColumn':
+    'prefix': 'tAddIndexColumn'
+    'body': 'Table.AddIndexColumn(\n\t${1:SelectTable},\n\t"${2:NewColumnName}",\n\t\t${3:1},\t/\/\ Optional\n\t\t${4:1},\t/\/\ Optional\n)'
+
+  'Table.AddJoinColumn':
+    'prefix': 'tAddJoinColumn'
+    'description': 'Performs a nested join between table1 and table2 from specific columns and produces the join result as a newColumnName column for each row of table1.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260742.aspx'
+    'body': ''
+
+
+
+
+
+
+

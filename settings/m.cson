@@ -1,4 +1,4 @@
-'.source.rust':
+'.source.m':
   'editor':
     'commentStart': '// '
     'increaseIndentPattern': '(?x)
