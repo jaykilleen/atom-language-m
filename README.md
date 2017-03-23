@@ -1,8 +1,25 @@
-# language-m package
+# M language support in Atom
 
-A short description of your package.
+Adds syntax highlighting and snippets to [.m](https://msdn.microsoft.com/en-us/library/mt211003.aspx) files in [Atom](http://atom.io/).
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+## Install
+
+Install the package `atom-language-m` in Atom (Preferences->Packages) or Atom's package manager from a shell:
+
+```bash
+$ apm install atom-language-m
+```
+
+## Bugs
+
+Grammar rules were written from scratch. They are under construction while I learn regex. There is wrong syntax highlighting. Feel free to fix it and send a pull request, or open an issue to report it.
+
+## Links
+
+* [M](https://msdn.microsoft.com/en-us/library/mt211003.aspx) -- a safe, concurrent, practical language
+* [Atom](http://atom.io/) -- a hackable text editor for the 21st Century
+
+---
 
 Resources I used to build this grammar package
 http://www.apeth.com/nonblog/stories/textmatebundle.html
