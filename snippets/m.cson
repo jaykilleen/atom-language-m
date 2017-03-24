@@ -7,7 +7,7 @@
 
   # Variable Declaration
   '# =':
-    'prefix': 'x'
+    'prefix': '#'
     'body': '#"${1:StepVariableName}" = $2'
   'x =':
     'prefix': 'x'
@@ -61,7 +61,7 @@
   # Empty Tables
   # A table with implicit column types
   '#table':
-    'prefix': '#t'
+    'prefix': 't'
     'body': """
       #table(
         {"${1:text}","${2:text}"},
@@ -75,7 +75,7 @@
 
   # A table with explicit column types
   '#tabletype':
-    'prefix': '#tt'
+    'prefix': 'ttype'
     'body': """
       #table(
         type table [OrderID = number, CustomerID = number, Item = text, Price = number],
@@ -90,7 +90,7 @@
   # Error Handling #TODO
   'try':
     'prefix': 'try'
-    'body': 'Hello World!'
+    'body': ''
 
   # Hidden Shortcuts
   'today':
@@ -100,17 +100,60 @@
   # Custom Function Creation
 
   # Function References
+
+  # Accessing Data Functions -> https://msdn.microsoft.com/en-us/library/mt296615.aspx
+
+    # Accessing Data
+
+  # Action Functions -> https://msdn.microsoft.com/en-us/library/mt779182.aspx
+
+    # Constants
+
+  # Binary Functions -> https://msdn.microsoft.com/en-us/library/mt296618.aspx
+
+  # Combiner Functions -> https://msdn.microsoft.com/en-us/library/mt267543.aspx
+
+  # Comparer Functions -> https://msdn.microsoft.com/en-us/library/mt296620.aspx
+
+  # Date Functions -> https://msdn.microsoft.com/en-us/library/mt296608.aspx
+
+  # DateTime Functions -> https://msdn.microsoft.com/en-us/library/mt296608.aspx
+
+  # DateTimeZone Functions -> https://msdn.microsoft.com/en-us/library/mt296609.aspx
+
+  # Duration Functions -> https://msdn.microsoft.com/en-us/library/mt296613.aspx
+
+  # Error Handling -> https://msdn.microsoft.com/en-us/library/mt267542.aspx
+
+  # Expression Functions -> https://msdn.microsoft.com/en-us/library/mt296622.aspx
+
+  # Function Values -> https://msdn.microsoft.com/en-us/library/mt267541.aspx
+
+  # List Functions -> https://msdn.microsoft.com/en-us/library/mt296612.aspx
+
+  # Lines Functions -> https://msdn.microsoft.com/en-us/library/mt296619.aspx
+
+  # Logical Functions -> https://msdn.microsoft.com/en-us/library/mt296607.aspx
+
+  # Number Functions -> https://msdn.microsoft.com/en-us/library/mt296605.aspx
+
+  # Record Functions -> https://msdn.microsoft.com/en-us/library/mt296611.aspx
+
+  # Replacer Functions -> https://msdn.microsoft.com/en-us/library/mt267540.aspx
+
+  # Splitter Functions -> https://msdn.microsoft.com/en-us/library/mt296623.aspx
+
   # Table functions -> https://msdn.microsoft.com/en-us/library/mt296614.aspx
 
-  # Table construction
+    # Table construction
 
-  # Conversions
+    # Conversions
 
-  # Information
+    # Information
 
-  # Row operations
+    # Row operations
 
-  # Column operations
+    # Column operations
 
   'Table.Column':
     'prefix': 'tColumn'
@@ -124,7 +167,7 @@
     'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260746.aspx'
     'body': 'Table.ColumnNames(\n\t${1:Table}\n)'
 
-  # Transformation
+    # Transformation
   'Table.AddColumn':
     'prefix': 'tAddColumn'
     'body': 'Table.AddColumn(\n\t${1:SelectTable},\n\t"${2:newColumnName}",\n\teach\n\t\t${3:NewColumnValue}\n)'
@@ -140,6 +183,256 @@
     'description': 'Performs a nested join between table1 and table2 from specific columns and produces the join result as a newColumnName column for each row of table1.'
     'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260742.aspx'
     'body': ''
+
+  # Text Functions -> https://msdn.microsoft.com/en-us/library/mt296604.aspx
+
+    # Information
+  'Text.Length':
+    'prefix': 'txLength'
+    'description': 'Returns the number of characters in a text value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt253345.aspx'
+    'body': 'Text.Length(\n\t${1:Text}\n)'
+
+    # Text Comparisons
+  'Character.FromNumber':
+    'prefix': 'chFromNumber'
+    'description': 'Returns a number to its character value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260474.aspx'
+    'body': ''
+
+  'Character.ToNumber':
+      'prefix': 'chToNumber'
+      'description': 'Returns a character to its number value.'
+      'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt261766.aspx'
+      'body': ''
+
+  'Text.From':
+    'prefix': 'txFrom'
+    'description': 'Returns the text representation of a number, date, time, datetime, datetimezone, logical, duration or binary value. If a value is null, Text.From returns null. The optional culture parameter is used to format the text value according to the given culture.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt253343.aspx'
+    'body': ''
+
+  'Text.FromBinary':
+    'prefix': 'txFromBinary'
+    'description': 'Decodes data from a binary value in to a text value using an encoding.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt253365.aspx'
+    'body': ''
+
+  'Text.NewGuid':
+    'prefix': 'txNewGuid'
+    'description': 'Returns a Guid value as a text value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260478.aspx'
+    'body': ''
+
+  'Text.ToBinary':
+    'prefix': 'txToBinary'
+    'description': 'Encodes a text value into binary value using an encoding.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260667.aspx'
+    'body': ''
+
+  'Text.ToList':
+    'prefix': 'txToList'
+    'description': 'Returns a list of characters from a text value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260475.aspx'
+    'body': ''
+
+  'Value.FromText':
+    'prefix': 'vFromText'
+    'description': 'Decodes a value from a textual representation, value, and interprets it as a value with an appropriate type. Value.FromText takes a text value and returns a number, a logical value, a null value, a DateTime value, a Duration value, or a text value. The empty text value is interpreted as a null value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260852.aspx'
+    'body': ''
+
+    # Extraction
+  'Text.At':
+    'prefix': 'txAt'
+    'description': 'Returns a character starting at a zero-based offset.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt253325.aspx'
+    'body': ''
+
+  'Text.AfterDelimiter':
+    'prefix': 'txAfterDelimiter'
+    'description': 'Returns the portion of text after the specified delimiter.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt798301.aspx'
+    'body': ''
+
+  'Text.BeforeDelimiter':
+    'prefix': 'txBeforeDelimiter'
+    'description': 'Returns the portion of text before the specified delimiter.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt798302.aspx'
+    'body': ''
+
+  'Text.BetweenDelimiters	':
+    'prefix': 'txBetweenDelimiters'
+    'description': 'Returns the portion of text between the specified startDelimiter and endDelimiter.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt798303.aspx'
+    'body': ''
+
+  'Text.Range':
+    'prefix': 'txRange'
+    'description': 'Returns a number of characters from a text value starting at a zero-based offset and for count number of characters.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260487.aspx'
+    'body': ''
+
+  'Text.Start':
+    'prefix': 'txStart'
+    'description': 'Returns the count of characters from the start of a text value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260483.aspx'
+    'body': ''
+
+  'Text.End':
+    'prefix': 'txEnd'
+    'description': 'Returns the number of characters from the end of a text value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt253341.aspx'
+    'body': ''
+
+    # Modification
+  'Text.Insert':
+    'prefix': 'txInsert'
+    'description': 'Returns a text value with newValue inserted into a text value starting at a zero-based offset.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt253383.aspx'
+    'body': ''
+
+  'Text.Remove':
+    'prefix': 'txRemove'
+    'description': 'Removes all occurrences of a character or list of characters from a text value. The removeChars parameter can be a character value or a list of character values.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260472.aspx'
+    'body': ''
+
+  'Text.RemoveRange':
+    'prefix': 'txRemoveRange'
+    'description': 'Removes count characters at a zero-based offset from a text value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260479.aspx '
+    'body': ''
+
+  'Text.Replace':
+    'prefix': 'txReplace'
+    'description': 'Replaces all occurrences of a substring with a new text value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260659.aspx'
+    'body': ''
+
+  'Text.ReplaceRange':
+    'prefix': 'txReplaceRange'
+    'description': 'Replaces length characters in a text value starting at a zero-based offset with the new text value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260514.aspx'
+    'body': ''
+
+    # Membership
+  'Text.Contains':
+    'prefix': 'txContains'
+    'description': 'Returns true if a text value substring was found within a text value string; otherwise, false.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt253324.aspx'
+    'body': ''
+
+  'Text.EndsWith':
+    'prefix': 'txEndsWith'
+    'description': 'Returns a logical value indicating whether a text value substring was found at the end of a string.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt253320.aspx'
+    'body': ''
+
+  'Text.PositionOf':
+    'prefix': 'txPositionOf'
+    'description': 'Returns the first occurrence of substring in a string and returns its position starting at startOffset.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260471.aspx'
+    'body': ''
+
+  'Text.PositionOfAny':
+    'prefix': 'txPositionOfAny'
+    'description': 'Returns the first occurrence of a text value in list and returns its position starting at startOffset.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260473.aspx'
+    'body': ''
+
+  'Text.StartsWith':
+    'prefix': 'txStartsWith'
+    'description': 'Returns a logical value indicating whether a text value substring was found at the beginning of a string.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260481.aspx'
+    'body': ''
+
+    # Transformations
+  'Text.Clean':
+    'prefix': 'txClean'
+    'description': 'Returns the original text value with non-printable characters removed.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt253328.aspx'
+    'body': ''
+
+  'Text.Combine':
+    'prefix': 'txCombine'
+    'description': 'Returns a text value that is the result of joining all text values with each value separated by a separator.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt253358.aspx '
+    'body': ''
+
+  'Text.Lower':
+    'prefix': 'txLower'
+    'description': 'Returns the lowercase of a text value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt253374.aspx'
+    'body': ''
+
+  'Text.PadEnd':
+    'prefix': 'txPadEnd'
+    'description': 'Returns a text value padded at the end with pad to make it at least length characters.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260477.aspx'
+    'body': ''
+
+  'Text.PadStart':
+    'prefix': 'txPadStart'
+    'description': 'Returns a text value padded at the beginning with pad to make it at least length characters. If pad is not specified, whitespace is used as pad.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260573.aspx'
+    'body': ''
+
+  'Text.Proper':
+    'prefix': 'txProper'
+    'description': 'Returns a text value with first letters of all words converted to uppercase.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt253706.aspx'
+    'body': ''
+
+  'Text.Repeat':
+    'prefix': 'txRepeat'
+    'description': 'Returns a text value composed of the input text value repeated a number of times.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260490.aspx'
+    'body': ''
+
+  'Text.Split':
+    'prefix': 'txSplit'
+    'description': 'Returns a list containing parts of a text value that are delimited by a separator text value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260482.aspx'
+    'body': ''
+
+  'Text.SplitAny':
+    'prefix': 'txSplitAny'
+    'description': 'Returns a list containing parts of a text value that are delimited by any separator text values.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260524.aspx'
+    'body': ''
+
+  'Text.Trim':
+    'prefix': 'txTrim'
+    'description': 'Removes any occurrences of characters in trimChars from text.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260494.aspx'
+    'body': ''
+
+  'Text.TrimEnd':
+    'prefix': 'txTrimEnd'
+    'description': 'Removes any occurrences of the characters specified in trimChars from the end of the original text value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260513.aspx'
+    'body': ''
+
+  'Text.TrimStart':
+    'prefix': 'txTrimStart'
+    'description': 'Removes any occurrences of the characters in trimChars from the start of the original text value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260519.aspx'
+    'body': ''
+
+  'Text.Upper':
+    'prefix': 'txUpper'
+    'description': 'Returns the uppercase of a text value.'
+    'descriptionMoreURL': 'https://msdn.microsoft.com/en-us/library/mt260665.aspx'
+    'body': ''
+
+  #  Time Functions -> https://msdn.microsoft.com/en-us/library/mt296610.aspx
+
+  #  Type Functions -> https://msdn.microsoft.com/en-us/library/mt296621.aspx
+
+  #  Uri Functions -> https://msdn.microsoft.com/en-us/library/mt296617.aspx
+
+  #  Value Functions -> https://msdn.microsoft.com/en-us/library/mt296616.aspx
 
 
 
