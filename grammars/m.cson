@@ -6,182 +6,116 @@
 
 'patterns': [
   {
-    'comment': 'The starting let clause'
-    'name': 'constant.language.declaration.m'
-    'match': '\\blet\\b[\n\r]'
-  }
-  {
-    'comment': 'The closing in clause'
-    'name': 'constant.language.declaration.m'
-    'match': '\\bin\\b[\n\r]'
+    'comment': 'The starting let and closing in clauses'
+    'name': 'constant.language.m'
+    'match': '\\b(let|in)\\b[\n\r]'
   }
   {
     'comment': 'Single Line Comments'
-    'name': 'punctuation.definition.comment.m'
+    'name': 'comment.m'
     'match': '\/\/.*'
-    'end': '\\]'
   }
   {
     'comment': 'Booleans'
     'match': '\\b(true|false)\\b(?![?!])'
-    'name': 'constant.language.boolean.m'
+    'name': 'constant.language.m'
+  }
+  {
+    'match': '\\b(and|not|or)\\b'
+    'name': 'keyword.operator.m'
   }
   {
     'match': '='
-    'name': 'keyword.operator.assignment.m'
-  }
-  {
-    'comment': 'Step Variable Name using Natural Language'
-    'name': 'variable.language.declaration.m'
-    'match': ' *(#").*?"'
-  }
-  {
-    'comment': 'Step Variable Name using non Natural Language'
-    'name': 'variable.language.declaration.m'
-    'match': '\\w+?(?= = )'
-  }
-  {
-    'comment': 'Function Variable Name using non Natural Language'
-    'name': 'variable.language.m'
-    'match': '\\w+?(?==)'
-  }
-  # Operators and assignments and or not
-  {
-    'match': '<<=|%=|&{1,2}=|\\*=|\\*\\*=|\\+=|-=|\\^=|\\|{1,2}=|<<'
-    'name': 'keyword.operator.assignment.augmented.m'
+    'name': 'keyword.operator.m'
   }
   {
     'match': '<=>|<(?!<|=)|>(?!<|=|>)|<=|>=|===|==|=~|!=|!~|(?<=[ \\t])\\?'
     'name': 'keyword.operator.comparison.m'
   }
   {
-    'match': '(?<!\\.)\\b(and|not|or)\\b(?![?!])'
-    'name': 'keyword.operator.logical.m'
-  }
-  {
-    # Make sure this goes after assignment and comparison
-    'match': '(?<=^|[ \\t])!|&&|\\|\\||\\^'
-    'name': 'keyword.operator.logical.m'
-  }
-  {
-    'comment': 'Safe navigation operator'
-    'match': '(&\\.)\\s*(?![A-Z])'
-    'captures':
-      '1':
-        'name': 'punctuation.separator.method.ruby'
-  }
-  {
     'match': '\\b(nil|null)\\b(?![?!])'
     'name': 'constant.language.nil.m'
   }
   {
-    'comment': 'Needs higher precidence than regular expressions.'
-    'match': '(?<!\\()/='
-    'name': 'keyword.operator.assignment.augmented.m'
-  }
-  {
-    'match': ';'
+    'match': '(;|,)'
     'name': 'punctuation.separator.statement.m'
   }
   {
-    'match': ','
-    'name': 'punctuation.separator.object.m'
+    'match': '({|}|\\[|\\]|\\(|\\))'
+    'name': 'punctuation.definition.scope.begin.m'
   }
-  {
-    'match': '{'
-    'name': 'punctuation.section.scope.begin.m'
-  }
-  {
-    'match': '}'
-    'name': 'punctuation.section.scope.end.m'
-  }
-  {
-    'match': '\\['
-    'name': 'punctuation.section.array.begin.m'
-  }
-  {
-    'match': ']'
-    'name': 'punctuation.section.array.end.m.'
-  }
-  {
-    'match': '\\(|\\)'
-    'name': 'punctuation.section.function.m'
-  }
-  {
-    'comment': 'keywords1'
-    'match': '\\b(as|else|error|if|is|meta|otherwise|&#x000D;&#x000A;section|shared|then|try|type|each)\\b(?![?!])'
-    'name': 'keyword.control.m'
-  }
-  {
-    'comment': 'keywords2'
-    'match': '\\b(#binary|#date|#datetime|&#x000D;&#x000A;#datetimezone|#duration|#infinity|#nan|#sections|#shared|#table|#time)\\b(?![?!])'
-    'name': 'keyword.control.m'
-  }
-  {
-    'comment': 'keywords4'
-    'match': '\\b(Access.Database|ActiveDirectory.Domains|Any.Type|AzureStorage.Blobs|AzureStorage.Tables|Binary.Buffer|Binary.Combine|Binary.Decompress|Binary.From|Binary.FromList|Binary.FromText|Binary.Length|Binary.ToList|Binary.ToText|Binary.Type|BinaryEncoding.Base64|BinaryEncoding.Hex|BinaryFormat.7BitEncodedSignedInteger|BinaryFormat.7BitEncodedUnsignedInteger|BinaryFormat.Binary|BinaryFormat.Byte|BinaryFormat.ByteOrder|BinaryFormat.Choice|BinaryFormat.Decimal|BinaryFormat.Double|BinaryFormat.Group|BinaryFormat.Length|BinaryFormat.List|BinaryFormat.Null|BinaryFormat.Record|BinaryFormat.SignedInteger16|BinaryFormat.SignedInteger32|BinaryFormat.SignedInteger64|BinaryFormat.Single|BinaryFormat.Text|BinaryFormat.Transform|BinaryFormat.UnsignedInteger16|BinaryFormat.UnsignedInteger32|BinaryFormat.UnsignedInteger64|Byte.Type|ByteOrder.BigEndian|ByteOrder.LittleEndian|Character.FromNumber|Character.ToNumber|Character.Type|Combiner.CombineTextByDelimiter|Combiner.CombineTextByEachDelimiter|Combiner.CombineTextByLengths|Combiner.CombineTextByPositions|Combiner.CombineTextByRanges|Comparer.Equals|Comparer.FromCulture|Comparer.Ordinal|Compression.Deflate|Compression.GZip|Csv.Document|Cube.AddAndExpandDimensionColumn|Cube.AddMeasureColumn|Cube.CollapseAndRemoveColumns|Cube.Dimensions|Cube.DisplayFolders|Cube.Measures|Cube.Transform|Culture.Current|Currency.From|Currency.Type|DB2.Database|Date.AddDays|Date.AddMonths|Date.AddQuarters|Date.AddWeeks|Date.AddYears|Date.Day|Date.DayOfWeek|Date.DayOfYear|Date.DaysInMonth|Date.EndOfDay|Date.EndOfMonth|Date.EndOfQuarter|Date.EndOfWeek|Date.EndOfYear|Date.From|Date.FromText|Date.IsInCurrentDay|Date.IsInCurrentMonth|Date.IsInCurrentQuarter|Date.IsInCurrentWeek|Date.IsInCurrentYear|Date.IsInNextDay|Date.IsInNextMonth|Date.IsInNextNDays|Date.IsInNextNMonths|Date.IsInNextNQuarters|Date.IsInNextNWeeks|Date.IsInNextNYears|Date.IsInNextQuarter|Date.IsInNextWeek|Date.IsInNextYear|Date.IsInPreviousDay|Date.IsInPreviousMonth|Date.IsInPreviousNDays|Date.IsInPreviousNMonths|Date.IsInPreviousNQuarters|Date.IsInPreviousNWeeks|Date.IsInPreviousNYears|Date.IsInPreviousQuarter|Date.IsInPreviousWeek|Date.IsInPreviousYear|Date.IsInYearToDate|Date.IsLeapYear|Date.Month|Date.QuarterOfYear|Date.StartOfDay|Date.StartOfMonth|Date.StartOfQuarter|Date.StartOfWeek|Date.StartOfYear|Date.ToRecord|Date.ToText|Date.Type|Date.WeekOfMonth|Date.WeekOfYear|Date.Year|DateTime.AddZone|DateTime.Date|DateTime.FixedLocalNow|DateTime.From|DateTime.FromFileTime|DateTime.FromText|DateTime.LocalNow|DateTime.Time|DateTime.ToRecord|DateTime.ToText|DateTime.Type|DateTimeZone.FixedLocalNow|DateTimeZone.FixedUtcNow|DateTimeZone.From|DateTimeZone.FromFileTime|DateTimeZone.FromText|DateTimeZone.LocalNow|DateTimeZone.RemoveZone|DateTimeZone.SwitchZone|DateTimeZone.ToLocal|DateTimeZone.ToRecord|DateTimeZone.ToText|DateTimeZone.ToUtc|DateTimeZone.Type|DateTimeZone.UtcNow|DateTimeZone.ZoneHours|DateTimeZone.ZoneMinutes|Day.Friday|Day.Monday|Day.Saturday|Day.Sunday|Day.Thursday|Day.Tuesday|Day.Wednesday|Decimal.Type|Double.Type|Duration.Days|Duration.From|Duration.FromText|Duration.Hours|Duration.Minutes|Duration.Seconds|Duration.ToRecord|Duration.ToText|Duration.TotalDays|Duration.TotalHours|Duration.TotalMinutes|Duration.TotalSeconds|Duration.Type|Embedded.Value|Error.Record|Excel.CurrentWorkbook|Excel.Workbook|Exchange.Contents|Expression.Constant|Expression.Evaluate|Expression.Identifier|ExtraValues.Error|ExtraValues.Ignore|ExtraValues.List|Facebook.Graph|File.Contents|Folder.Contents|Folder.Files|Function.Invoke|Function.Type|GroupKind.Global|GroupKind.Local|HdInsight.Containers|HdInsight.Contents|HdInsight.Files|Hdfs.Contents|Hdfs.Files|Int16.Type|Int32.Type|Int64.From|Int64.Type|Int8.Type|JoinAlgorithm.Dynamic|JoinAlgorithm.LeftHash|JoinAlgorithm.LeftIndex|JoinAlgorithm.PairwiseHash|JoinAlgorithm.RightHash|JoinAlgorithm.RightIndex|JoinAlgorithm.SortMerge|JoinKind.FullOuter|JoinKind.Inner|JoinKind.LeftAnti|JoinKind.LeftOuter|JoinKind.RightAnti|JoinKind.RightOuter|Json.Document|Lines.FromBinary|Lines.FromText|Lines.ToBinary|Lines.ToText|List.Accumulate|List.AllTrue|List.Alternate|List.AnyTrue|List.Average|List.Buffer|List.Combine|List.Contains|List.ContainsAll|List.ContainsAny|List.Count|List.Covariance|List.DateTimeZones|List.DateTimes|List.Dates|List.Difference|List.Distinct|List.Durations|List.FindText|List.First|List.FirstN|List.Generate|List.InsertRange|List.Intersect|List.IsDistinct|List.IsEmpty|List.Last|List.LastN|List.MatchesAll|List.MatchesAny|List.Max|List.MaxN|List.Median|List.Min|List.MinN|List.Mode|List.Modes|List.NonNullCount|List.Numbers|List.PositionOf|List.PositionOfAny|List.Positions|List.Product|List.Random|List.Range|List.RemoveFirstN|List.RemoveItems|List.RemoveLastN|List.RemoveMatchingItems|List.RemoveNulls|List.RemoveRange|List.Repeat|List.ReplaceMatchingItems|List.ReplaceRange|List.ReplaceValue|List.Reverse|List.Select|List.Single|List.SingleOrDefault|List.Skip|List.Sort|List.StandardDeviation|List.Sum|List.Times|List.Transform|List.TransformMany|List.Type|List.Union|Logical.From|Logical.FromText|Logical.ToText|Logical.Type|Marketplace.Subscriptions|MissingField.Error|MissingField.Ignore|MissingField.UseNull|MySQL.Database|None.Type|Null.Type|Number.Abs|Number.Acos|Number.Asin|Number.Atan|Number.Atan2|Number.BitwiseAnd|Number.BitwiseNot|Number.BitwiseOr|Number.BitwiseShiftLeft|Number.BitwiseShiftRight|Number.BitwiseXor|Number.Combinations|Number.Cos|Number.Cosh|Number.E|Number.Epsilon|Number.Exp|Number.Factorial|Number.From|Number.FromText|Number.IntegerDivide|Number.IsEven|Number.IsNaN|Number.IsOdd|Number.Ln|Number.Log|Number.Log10|Number.Mod|Number.NaN|Number.NegativeInfinity|Number.PI|Number.Permutations|Number.PositiveInfinity|Number.Power|Number.Random|Number.RandomBetween|Number.Round|Number.RoundAwayFromZero|Number.RoundDown|Number.RoundTowardZero|Number.RoundUp|Number.Sign|Number.Sin|Number.Sinh|Number.Sqrt|Number.Tan|Number.Tanh|Number.ToText|Number.Type|OData.Feed|Occurrence.All|Occurrence.First|Occurrence.Last|Occurrence.Optional|Occurrence.Repeating|Occurrence.Required|Oracle.Database|Order.Ascending|Order.Descending|PostgreSQL.Database|Precision.Decimal|Precision.Double|QuoteStyle.Csv|QuoteStyle.None|Record.AddField|Record.Combine|Record.Field|Record.FieldCount|Record.FieldNames|Record.FieldOrDefault|Record.FieldValues|Record.FromList|Record.FromTable|Record.HasFields|Record.RemoveFields|Record.RenameFields|Record.ReorderFields|Record.SelectFields|Record.ToList|Record.ToTable|Record.TransformFields|Record.Type|Replacer.ReplaceText|Replacer.ReplaceValue|RoundingMode.AwayFromZero|RoundingMode.Down|RoundingMode.ToEven|RoundingMode.TowardZero|RoundingMode.Up|SapBusinessObjects.Universes|SharePoint.Contents|SharePoint.Files|SharePoint.Tables|Single.Type|Soda.Feed|Splitter.SplitByNothing|Splitter.SplitTextByAnyDelimiter|Splitter.SplitTextByDelimiter|Splitter.SplitTextByEachDelimiter|Splitter.SplitTextByLengths|Splitter.SplitTextByPositions|Splitter.SplitTextByRanges|Splitter.SplitTextByRepeatedLengths|Splitter.SplitTextByWhitespace|Sql.Database|Sql.Databases|Sybase.Database|Table.AddColumn|Table.AddIndexColumn|Table.AddJoinColumn|Table.AddKey|Table.AggregateTableColumn|Table.AlternateRows|Table.Buffer|Table.Column|Table.ColumnCount|Table.ColumnNames|Table.Combine|Table.CombineColumns|Table.Contains|Table.ContainsAll|Table.ContainsAny|Table.DemoteHeaders|Table.Distinct|Table.DuplicateColumn|Table.ExpandListColumn|Table.ExpandRecordColumn|Table.ExpandTableColumn|Table.FillDown|Table.FillUp|Table.FilterWithDataTable|Table.FindText|Table.First|Table.FirstN|Table.FromColumns|Table.FromList|Table.FromPartitions|Table.FromRecords|Table.FromRows|Table.FromValue|Table.Group|Table.HasColumns|Table.InsertRows|Table.IsDistinct|Table.IsEmpty|Table.Join|Table.Keys|Table.Last|Table.LastN|Table.MatchesAllRows|Table.MatchesAnyRows|Table.Max|Table.MaxN|Table.Min|Table.MinN|Table.NestedJoin|Table.Partition|Table.PartitionValues|Table.Pivot|Table.PositionOf|Table.PositionOfAny|Table.PrefixColumns|Table.PromoteHeaders|Table.Range|Table.RemoveColumns|Table.RemoveFirstN|Table.RemoveLastN|Table.RemoveMatchingRows|Table.RemoveRows|Table.RemoveRowsWithErrors|Table.RenameColumns|Table.ReorderColumns|Table.Repeat|Table.ReplaceErrorValues|Table.ReplaceKeys|Table.ReplaceMatchingRows|Table.ReplaceRelationshipIdentity|Table.ReplaceRows|Table.ReplaceValue|Table.ReverseRows|Table.RowCount|Table.SelectColumns|Table.SelectRows|Table.SelectRowsWithErrors|Table.SingleRow|Table.Skip|Table.Sort|Table.SplitColumn|Table.ToColumns|Table.ToList|Table.ToRecords|Table.ToRows|Table.TransformColumnTypes|Table.TransformColumns|Table.TransformRows|Table.Transpose|Table.Type|Table.Unpivot|Table.UnpivotOtherColumns|Teradata.Database|Text.At|Text.Clean|Text.Combine|Text.Contains|Text.End|Text.EndsWith|Text.From|Text.FromBinary|Text.Insert|Text.Length|Text.Lower|Text.NewGuid|Text.PadEnd|Text.PadStart|Text.PositionOf|Text.PositionOfAny|Text.Proper|Text.Range|Text.Remove|Text.RemoveRange|Text.Repeat|Text.Replace|Text.ReplaceRange|Text.Split|Text.SplitAny|Text.Start|Text.StartsWith|Text.ToBinary|Text.ToList|Text.Trim|Text.TrimEnd|Text.TrimStart|Text.Type|Text.Upper|TextEncoding.Ascii|TextEncoding.BigEndianUnicode|TextEncoding.Unicode|TextEncoding.Utf16|TextEncoding.Utf8|TextEncoding.Windows|Time.EndOfHour|Time.From|Time.FromText|Time.Hour|Time.Minute|Time.Second|Time.StartOfHour|Time.ToRecord|Time.ToText|Time.Type|Type.AddTableKey|Type.ClosedRecord|Type.ForFunction|Type.ForRecord|Type.FunctionParameters|Type.FunctionRequiredParameters|Type.FunctionReturn|Type.Is|Type.IsNullable|Type.IsOpenRecord|Type.ListItem|Type.NonNullable|Type.OpenRecord|Type.RecordFields|Type.ReplaceTableKeys|Type.TableColumn|Type.TableKeys|Type.TableRow|Type.Type|Uri.Combine|Uri.Parts|Value.Add|Value.As|Value.Compare|Value.Divide|Value.Equals|Value.Firewall|Value.FromText|Value.Is|Value.Metadata|Value.Multiply|Value.NullableEquals|Value.RemoveMetadata|Value.ReplaceMetadata|Value.ReplaceType|Value.Subtract|Value.Type|Variable.Value|Web.Contents|Web.Page|Xml.Document|Xml.Tables)\\b(?![?!])'
-    'name': 'keyword.other.special-method.m'
-  }
-  # Strings
-  {
-    'comment': 'Single-quote string literal (character)'
-    'begin': '\''
-    'end': '\''
-    'name': 'string.quoted.single.m'
-    'match': 'b?\'([^\'\\\\]|\\\\(x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.))\''
-  }
-  {
-    'comment': 'Double-quote string literal (character)'
-    'begin': '"'
-    'end': '"'
-    'name': 'string.quoted.double.m'
-    'match': 'b?\'([^\'\\\\]|\\\\(x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.))\''
-  }
-  # Numbers
   {
     'comment': 'Floating point literal (fraction)'
-    'name': 'constant.numeric.float.m'
+    'name': 'constant.numeric.float.rust'
     'match': '\\b[0-9][0-9_]*\\.[0-9][0-9_]*([eE][+-]?[0-9_]+)?(f32|f64)?\\b'
   }
   {
     'comment': 'Floating point literal (exponent)'
-    'name': 'constant.numeric.float.m'
+    'name': 'constant.numeric.float.rust'
     'match': '\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?[eE][+-]?[0-9_]+(f32|f64)?\\b'
   }
   {
     'comment': 'Floating point literal (typed)'
-    'name': 'constant.numeric.float.m'
+    'name': 'constant.numeric.float.rust'
     'match': '\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?([eE][+-]?[0-9_]+)?(f32|f64)\\b'
   }
   {
     'comment': 'Integer literal (decimal)'
-    'name': 'constant.numeric.integer.decimal.m'
+    'name': 'constant.numeric.integer.decimal.rust'
     'match': '\\b[0-9][0-9_]*([ui](8|16|32|64|128|s|size))?\\b'
   }
-  # Operators
   {
-    'comment': 'Miscellaneous operator'
-    'name': 'keyword.operator.misc.m'
-    'match': '(=>|::|\\bas\\b)'
+    'comment': 'Integer literal (hexadecimal)'
+    'name': 'constant.numeric.integer.hexadecimal.rust'
+    'match': '\\b0x[a-fA-F0-9_]+([ui](8|16|32|64|128|s|size))?\\b'
   }
   {
-    'comment': 'Comparison operator'
-    'name': 'keyword.operator.comparison.m'
-    'match': '(&&|\\|\\||==|!=)'
+    'comment': 'Integer literal (octal)'
+    'name': 'constant.numeric.integer.octal.rust'
+    'match': '\\b0o[0-7_]+([ui](8|16|32|64|128|s|size))?\\b'
   }
   {
-    'comment': 'Assignment operator'
-    'name': 'keyword.operator.assignment.m'
-    'match': '(\\+=|-=|/=|\\*=|%=|\\^=|&=|\\|=|<<=|>>=|=)'
+    'comment': 'Integer literal (binary)'
+    'name': 'constant.numeric.integer.binary.rust'
+    'match': '\\b0b[01_]+([ui](8|16|32|64|128|s|size))?\\b'
   }
   {
-    'comment': 'Arithmetic operator'
-    'name': 'keyword.operator.arithmetic.m'
-    'match': '(!|\\+|-|/|\\*|%|\\^|&|\\||<<|>>)'
+    'match': '\\b(as|else|error|if|is|meta|otherwise|&#x000D;&#x000A;section|shared|then|try|type|each)\\b(?![?!])'
+    'name': 'variable.language.m'
   }
   {
-    'comment': 'Comparison operator (second group because of regex precedence)'
-    'name': 'keyword.operator.comparison.m'
-    'match': '(<=|>=|<|>)'
+    'comment': 'Step Variable Name using Natural Language'
+    'name': 'variable.parameter.m'
+    'match': '#".*?"'
+  }
+  {
+    'comment': 'Step Variable Name using non Natural Language'
+    'name': 'variable.parameter.m'
+    'match': '\\w+?(?= = )'
+  }
+  {
+    'comment': 'Variable being used outside of parameter declaration'
+    'name': 'variable.parameter.m'
+    'match': '(?<!"|#|{|\\.|(?:\\/\\/(?:.)))(\\b(\\w+)\\b)(?!"|}|\\.)'
+  }
+  {
+    'comment': 'Function Variable Name using non Natural Language'
+    'name': 'variable.parameter.m'
+    'match': '\\w+?(?=( = ))'
+  }
+  {
+    'comment': 'Text between double quotes'
+    'name': 'string.m'
+    'match': '"\\w+?"'
+  }
+  {
+    'comment': 'M Keywords 1'
+    'match': '\\b(Access.Database|ActiveDirectory.Domains|Any.Type|AzureStorage.Blobs|AzureStorage.Tables|Binary.Buffer|Binary.Combine|Binary.Decompress|Binary.From|Binary.FromList|Binary.FromText|Binary.Length|Binary.ToList|Binary.ToText|Binary.Type|BinaryEncoding.Base64|BinaryEncoding.Hex|BinaryFormat.7BitEncodedSignedInteger|BinaryFormat.7BitEncodedUnsignedInteger|BinaryFormat.Binary|BinaryFormat.Byte|BinaryFormat.ByteOrder|BinaryFormat.Choice|BinaryFormat.Decimal|BinaryFormat.Double|BinaryFormat.Group|BinaryFormat.Length|BinaryFormat.List|BinaryFormat.Null|BinaryFormat.Record|BinaryFormat.SignedInteger16|BinaryFormat.SignedInteger32|BinaryFormat.SignedInteger64|BinaryFormat.Single|BinaryFormat.Text|BinaryFormat.Transform|BinaryFormat.UnsignedInteger16|BinaryFormat.UnsignedInteger32|BinaryFormat.UnsignedInteger64|Byte.Type|ByteOrder.BigEndian|ByteOrder.LittleEndian|Character.FromNumber|Character.ToNumber|Character.Type|Combiner.CombineTextByDelimiter|Combiner.CombineTextByEachDelimiter|Combiner.CombineTextByLengths|Combiner.CombineTextByPositions|Combiner.CombineTextByRanges|Comparer.Equals|Comparer.FromCulture|Comparer.Ordinal|Compression.Deflate|Compression.GZip|Csv.Document|Cube.AddAndExpandDimensionColumn|Cube.AddMeasureColumn|Cube.CollapseAndRemoveColumns|Cube.Dimensions|Cube.DisplayFolders|Cube.Measures|Cube.Transform|Culture.Current|Currency.From|Currency.Type|DB2.Database|Date.AddDays|Date.AddMonths|Date.AddQuarters|Date.AddWeeks|Date.AddYears|Date.Day|Date.DayOfWeek|Date.DayOfYear|Date.DaysInMonth|Date.EndOfDay|Date.EndOfMonth|Date.EndOfQuarter|Date.EndOfWeek|Date.EndOfYear|Date.From|Date.FromText|Date.IsInCurrentDay|Date.IsInCurrentMonth|Date.IsInCurrentQuarter|Date.IsInCurrentWeek|Date.IsInCurrentYear|Date.IsInNextDay|Date.IsInNextMonth|Date.IsInNextNDays|Date.IsInNextNMonths|Date.IsInNextNQuarters|Date.IsInNextNWeeks|Date.IsInNextNYears|Date.IsInNextQuarter|Date.IsInNextWeek|Date.IsInNextYear|Date.IsInPreviousDay|Date.IsInPreviousMonth|Date.IsInPreviousNDays|Date.IsInPreviousNMonths|Date.IsInPreviousNQuarters|Date.IsInPreviousNWeeks|Date.IsInPreviousNYears|Date.IsInPreviousQuarter|Date.IsInPreviousWeek|Date.IsInPreviousYear|Date.IsInYearToDate|Date.IsLeapYear|Date.Month|Date.QuarterOfYear|Date.StartOfDay|Date.StartOfMonth|Date.StartOfQuarter|Date.StartOfWeek|Date.StartOfYear|Date.ToRecord|Date.ToText|Date.Type|Date.WeekOfMonth|Date.WeekOfYear|Date.Year|DateTime.AddZone|DateTime.Date|DateTime.FixedLocalNow|DateTime.From|DateTime.FromFileTime|DateTime.FromText|DateTime.LocalNow|DateTime.Time|DateTime.ToRecord|DateTime.ToText|DateTime.Type|DateTimeZone.FixedLocalNow|DateTimeZone.FixedUtcNow|DateTimeZone.From|DateTimeZone.FromFileTime|DateTimeZone.FromText|DateTimeZone.LocalNow|DateTimeZone.RemoveZone|DateTimeZone.SwitchZone|DateTimeZone.ToLocal|DateTimeZone.ToRecord|DateTimeZone.ToText|DateTimeZone.ToUtc|DateTimeZone.Type|DateTimeZone.UtcNow|DateTimeZone.ZoneHours|DateTimeZone.ZoneMinutes|Day.Friday|Day.Monday|Day.Saturday|Day.Sunday|Day.Thursday|Day.Tuesday|Day.Wednesday|Decimal.Type|Double.Type|Duration.Days|Duration.From|Duration.FromText|Duration.Hours|Duration.Minutes|Duration.Seconds|Duration.ToRecord|Duration.ToText|Duration.TotalDays|Duration.TotalHours|Duration.TotalMinutes|Duration.TotalSeconds|Duration.Type|Embedded.Value|Error.Record|Excel.CurrentWorkbook|Excel.Workbook|Exchange.Contents|Expression.Constant|Expression.Evaluate|Expression.Identifier|ExtraValues.Error|ExtraValues.Ignore|ExtraValues.List|Facebook.Graph|File.Contents|Folder.Contents|Folder.Files|Function.Invoke|Function.Type|GroupKind.Global|GroupKind.Local|HdInsight.Containers|HdInsight.Contents|HdInsight.Files|Hdfs.Contents|Hdfs.Files|Int16.Type|Int32.Type|Int64.From|Int64.Type|Int8.Type|JoinAlgorithm.Dynamic|JoinAlgorithm.LeftHash|JoinAlgorithm.LeftIndex|JoinAlgorithm.PairwiseHash|JoinAlgorithm.RightHash|JoinAlgorithm.RightIndex|JoinAlgorithm.SortMerge|JoinKind.FullOuter|JoinKind.Inner|JoinKind.LeftAnti|JoinKind.LeftOuter|JoinKind.RightAnti|JoinKind.RightOuter|Json.Document|Lines.FromBinary|Lines.FromText|Lines.ToBinary|Lines.ToText|List.Accumulate|List.AllTrue|List.Alternate|List.AnyTrue|List.Average|List.Buffer|List.Combine|List.Contains|List.ContainsAll|List.ContainsAny|List.Count|List.Covariance|List.DateTimeZones|List.DateTimes|List.Dates|List.Difference|List.Distinct|List.Durations|List.FindText|List.First|List.FirstN|List.Generate|List.InsertRange|List.Intersect|List.IsDistinct|List.IsEmpty|List.Last|List.LastN|List.MatchesAll|List.MatchesAny|List.Max|List.MaxN|List.Median|List.Min|List.MinN|List.Mode|List.Modes|List.NonNullCount|List.Numbers|List.PositionOf|List.PositionOfAny|List.Positions|List.Product|List.Random|List.Range|List.RemoveFirstN|List.RemoveItems|List.RemoveLastN|List.RemoveMatchingItems|List.RemoveNulls|List.RemoveRange|List.Repeat|List.ReplaceMatchingItems|List.ReplaceRange|List.ReplaceValue|List.Reverse|List.Select|List.Single|List.SingleOrDefault|List.Skip|List.Sort|List.StandardDeviation|List.Sum|List.Times|List.Transform|List.TransformMany|List.Type|List.Union|Logical.From|Logical.FromText|Logical.ToText|Logical.Type|Marketplace.Subscriptions|MissingField.Error|MissingField.Ignore|MissingField.UseNull|MySQL.Database|None.Type|Null.Type|Number.Abs|Number.Acos|Number.Asin|Number.Atan|Number.Atan2|Number.BitwiseAnd|Number.BitwiseNot|Number.BitwiseOr|Number.BitwiseShiftLeft|Number.BitwiseShiftRight|Number.BitwiseXor|Number.Combinations|Number.Cos|Number.Cosh|Number.E|Number.Epsilon|Number.Exp|Number.Factorial|Number.From|Number.FromText|Number.IntegerDivide|Number.IsEven|Number.IsNaN|Number.IsOdd|Number.Ln|Number.Log|Number.Log10|Number.Mod|Number.NaN|Number.NegativeInfinity|Number.PI|Number.Permutations|Number.PositiveInfinity|Number.Power|Number.Random|Number.RandomBetween|Number.Round|Number.RoundAwayFromZero|Number.RoundDown|Number.RoundTowardZero|Number.RoundUp|Number.Sign|Number.Sin|Number.Sinh|Number.Sqrt|Number.Tan|Number.Tanh|Number.ToText|Number.Type|OData.Feed|Occurrence.All|Occurrence.First|Occurrence.Last|Occurrence.Optional|Occurrence.Repeating|Occurrence.Required|Oracle.Database|Order.Ascending|Order.Descending|PostgreSQL.Database|Precision.Decimal|Precision.Double|QuoteStyle.Csv|QuoteStyle.None|Record.AddField|Record.Combine|Record.Field|Record.FieldCount|Record.FieldNames|Record.FieldOrDefault|Record.FieldValues|Record.FromList|Record.FromTable|Record.HasFields|Record.RemoveFields|Record.RenameFields|Record.ReorderFields|Record.SelectFields|Record.ToList|Record.ToTable|Record.TransformFields|Record.Type|Replacer.ReplaceText|Replacer.ReplaceValue|RoundingMode.AwayFromZero|RoundingMode.Down|RoundingMode.ToEven|RoundingMode.TowardZero|RoundingMode.Up|SapBusinessObjects.Universes|SharePoint.Contents|SharePoint.Files|SharePoint.Tables|Single.Type|Soda.Feed|Splitter.SplitByNothing|Splitter.SplitTextByAnyDelimiter|Splitter.SplitTextByDelimiter|Splitter.SplitTextByEachDelimiter|Splitter.SplitTextByLengths|Splitter.SplitTextByPositions|Splitter.SplitTextByRanges|Splitter.SplitTextByRepeatedLengths|Splitter.SplitTextByWhitespace|Sql.Database|Sql.Databases|Sybase.Database|Table.AddColumn|Table.AddIndexColumn|Table.AddJoinColumn|Table.AddKey|Table.AggregateTableColumn|Table.AlternateRows|Table.Buffer|Table.Column|Table.ColumnCount|Table.ColumnNames|Table.Combine|Table.CombineColumns|Table.Contains|Table.ContainsAll|Table.ContainsAny|Table.DemoteHeaders|Table.Distinct|Table.DuplicateColumn|Table.ExpandListColumn|Table.ExpandRecordColumn|Table.ExpandTableColumn|Table.FillDown|Table.FillUp|Table.FilterWithDataTable|Table.FindText|Table.First|Table.FirstN|Table.FromColumns|Table.FromList|Table.FromPartitions|Table.FromRecords|Table.FromRows|Table.FromValue|Table.Group|Table.HasColumns|Table.InsertRows|Table.IsDistinct|Table.IsEmpty|Table.Join|Table.Keys|Table.Last|Table.LastN|Table.MatchesAllRows|Table.MatchesAnyRows|Table.Max|Table.MaxN|Table.Min|Table.MinN|Table.NestedJoin|Table.Partition|Table.PartitionValues|Table.Pivot|Table.PositionOf|Table.PositionOfAny|Table.PrefixColumns|Table.PromoteHeaders|Table.Range|Table.RemoveColumns|Table.RemoveFirstN|Table.RemoveLastN|Table.RemoveMatchingRows|Table.RemoveRows|Table.RemoveRowsWithErrors|Table.RenameColumns|Table.ReorderColumns|Table.Repeat|Table.ReplaceErrorValues|Table.ReplaceKeys|Table.ReplaceMatchingRows|Table.ReplaceRelationshipIdentity|Table.ReplaceRows|Table.ReplaceValue|Table.ReverseRows|Table.RowCount|Table.SelectColumns|Table.SelectRows|Table.SelectRowsWithErrors|Table.SingleRow|Table.Skip|Table.Sort|Table.SplitColumn|Table.ToColumns|Table.ToList|Table.ToRecords|Table.ToRows|Table.TransformColumnTypes|Table.TransformColumns|Table.TransformRows|Table.Transpose|Table.Type|Table.Unpivot|Table.UnpivotOtherColumns|Teradata.Database|Text.At|Text.Clean|Text.Combine|Text.Contains|Text.End|Text.EndsWith|Text.From|Text.FromBinary|Text.Insert|Text.Length|Text.Lower|Text.NewGuid|Text.PadEnd|Text.PadStart|Text.PositionOf|Text.PositionOfAny|Text.Proper|Text.Range|Text.Remove|Text.RemoveRange|Text.Repeat|Text.Replace|Text.ReplaceRange|Text.Split|Text.SplitAny|Text.Start|Text.StartsWith|Text.ToBinary|Text.ToList|Text.Trim|Text.TrimEnd|Text.TrimStart|Text.Type|Text.Upper|TextEncoding.Ascii|TextEncoding.BigEndianUnicode|TextEncoding.Unicode|TextEncoding.Utf16|TextEncoding.Utf8|TextEncoding.Windows|Time.EndOfHour|Time.From|Time.FromText|Time.Hour|Time.Minute|Time.Second|Time.StartOfHour|Time.ToRecord|Time.ToText|Time.Type|Type.AddTableKey|Type.ClosedRecord|Type.ForFunction|Type.ForRecord|Type.FunctionParameters|Type.FunctionRequiredParameters|Type.FunctionReturn|Type.Is|Type.IsNullable|Type.IsOpenRecord|Type.ListItem|Type.NonNullable|Type.OpenRecord|Type.RecordFields|Type.ReplaceTableKeys|Type.TableColumn|Type.TableKeys|Type.TableRow|Type.Type|Uri.Combine|Uri.Parts|Value.Add|Value.As|Value.Compare|Value.Divide|Value.Equals|Value.Firewall|Value.FromText|Value.Is|Value.Metadata|Value.Multiply|Value.NullableEquals|Value.RemoveMetadata|Value.ReplaceMetadata|Value.ReplaceType|Value.Subtract|Value.Type|Variable.Value|Web.Contents|Web.Page|Xml.Document|Xml.Tables)\\b(?![?!])'
+    'name': 'keyword.other.special-method.m'
+  }
+  {
+    'comment': 'M Keywords 2'
+    'match': '\\b(#binary|#date|#datetime|&#x000D;&#x000A;#datetimezone|#duration|#infinity|#nan|#sections|#shared|#table|#time)\\b(?![?!])'
+    'name': 'keyword.control.m'
   }
 ]
